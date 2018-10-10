@@ -146,8 +146,7 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     }
 
     @Override
-    public Parcelable onSaveInstanceState()
-    {
+    public Parcelable onSaveInstanceState() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(SUPER_STATE, super.onSaveInstanceState());
         bundle.putBoolean(SCROLL_STATE, mStickyScrollPresenter.mScrolled);
@@ -155,8 +154,7 @@ public class StickyScrollView extends NestedScrollView implements IStickyScrollP
     }
 
     @Override
-    public void onRestoreInstanceState(Parcelable state)
-    {
+    public void onRestoreInstanceState(Parcelable state) {
         if (state instanceof Bundle) {
             Bundle bundle = (Bundle) state;
             mStickyScrollPresenter.mScrolled = bundle.getBoolean(SCROLL_STATE);
