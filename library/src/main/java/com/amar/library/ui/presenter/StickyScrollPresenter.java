@@ -12,7 +12,7 @@ import com.amar.library.provider.interfaces.IScreenInfoProvider;
 
 public class StickyScrollPresenter {
 
-    private final IResourceProvider mTypedArrayResourceProvider;
+    private IResourceProvider mTypedArrayResourceProvider;
     private IStickyScrollPresentation mStickyScrollPresentation;
 
     private int mDeviceHeight;
@@ -33,15 +33,19 @@ public class StickyScrollPresenter {
     }
 
     public void onGlobalLayoutChange(@StyleableRes int headerRes, @StyleableRes int footerRes){
-        int headerId = mTypedArrayResourceProvider.getResourceId(headerRes);
-        if (headerId != 0) {
-            mStickyScrollPresentation.initHeaderView(headerId);
+
+        if (mTypedArrayResourceProvider != null) {
+            int headerId = mTypedArrayResourceProvider.getResourceId(headerRes);
+            if (headerId != 0) {
+                mStickyScrollPresentation.initHeaderView(headerId);
+            }
+            int footerId = mTypedArrayResourceProvider.getResourceId(footerRes);
+            if (footerId != 0) {
+                mStickyScrollPresentation.initFooterView(footerId);
+            }
+            mTypedArrayResourceProvider.recycle();
+            mTypedArrayResourceProvider = null;
         }
-        int footerId = mTypedArrayResourceProvider.getResourceId(footerRes);
-        if (footerId != 0){
-            mStickyScrollPresentation.initFooterView(footerId);
-        }
-        mTypedArrayResourceProvider.recycle();
     }
 
     public void initStickyFooter(int measuredHeight, int initialStickyFooterLocation) {
