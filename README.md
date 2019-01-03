@@ -1,4 +1,4 @@
-# StickyScrollView
+# StickyNestedScrollView
 Sticky header and footer for android ScrollView.
 
 ### Install
